@@ -1,0 +1,2 @@
+Wed Oct  8 13:51:39 2025	534306	/home/ebenq/.local/bin/findsoln -eqb -xrel -sigma 2025-10-08_at_13-49_tw_sigma.asc -T 10 -R 400 uRe400-1-2-2.nc 
+Wed Oct  8 13:52:00 2025	534506	/home/ebenq/.local/bin/findsoln -eqb -xrel -sigma 2025-10-08_at_13-49_tw_sigma.asc -T 10 -R 400 uRe400-1-2-2.nc 

@@ -1,0 +1,8 @@
+Mon Oct 13 23:48:50 2025	180614	findsoln -eqb -zrel -T 10 -R 200 -sigma TW1-2pi1piRe200-1-2-2-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe200-1-2-2 uTW1-2pi1piRe200-1-2-2.nc 
+Mon Oct 13 23:49:22 2025	180959	findsoln -eqb -zrel -T 10 -R 200 -sigma TW1-2pi1piRe200-1-2-2-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe200-1-2-2 uTW1-2pi1piRe200-1-2-2.nc 
+Mon Oct 13 23:55:17 2025	181957	findsoln -eqb -zrel -T 10 -R 300 -sigma TW1-2pi1piRe300-1-2-2-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe300-1-2-2 uTW1-2pi1piRe300-1-2-2.nc 
+Tue Oct 14 00:01:41 2025	183263	findsoln -eqb -zrel -T 10 -R 200 -sigma TW1-2pi1piRe200-2-2-4-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe200-2-2-4 uTW1-2pi1piRe200-2-2-4.nc 
+Tue Oct 14 00:11:03 2025	184820	findsoln -eqb -zrel -T 10 -R 300 -sigma TW1-2pi1piRe300-2-2-4-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe300-2-2-4 uTW1-2pi1piRe300-2-2-4.nc 
+Wed Oct 15 10:35:52 2025	199565	/home/ebenq/.local/bin/findsoln -eqb -zrel -T 10 -R 200 -sigma TW1-2pi1piRe200-3-3-6-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe200-3-3-6/ uTW1-2pi1piRe200-3-3-6.nc 
+Wed Oct 15 10:36:18 2025	199763	/home/ebenq/.local/bin/findsoln -eqb -zrel -T 10 -R 200 -sigma TW1-2pi1piRe200-3-3-6-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe200-3-3-6/ uTW1-2pi1piRe200-3-3-6.nc 
+Wed Oct 15 10:36:43 2025	199890	/home/ebenq/.local/bin/findsoln -eqb -zrel -T 10 -R 300 -sigma TW1-2pi1piRe200-3-3-6-sol-sigma.asc -symms sxytxz.asc -od TW1-2pi1piRe300-3-3-6/ uTW1-2pi1piRe300-3-3-6.nc 

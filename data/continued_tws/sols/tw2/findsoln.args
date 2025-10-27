@@ -1,0 +1,10 @@
+Wed Oct 15 11:04:02 2025	208336	findsoln -eqb -zrel -T 10 -R 250 -sigma TW2-2pi1piRe250-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-1-2-2 uTW2-2pi1piRe250-1-2-2.nc 
+Wed Oct 15 11:04:31 2025	208743	findsoln -eqb -zrel -T 10 -R 250 -sigma TW2-2pi1piRe250-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-1-2-2 uTW2-2pi1piRe250-1-2-2.nc 
+Wed Oct 15 11:49:08 2025	214383	findsoln -eqb -zrel -T 10 -R 300 -sigma TW2-2pi1piRe300-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe300-1-2-2 uTW2-2pi1piRe300-1-2-2.nc 
+Wed Oct 15 11:57:24 2025	215228	findsoln -eqb -zrel -T 10 -R 250 -sigma TW2-2pi1piRe250-2-2-4-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-2-2-4 uTW2-2pi1piRe250-2-2-4.nc 
+Wed Oct 15 12:56:02 2025	7245	findsoln -eqb -xrel -T 10 -R 250 -sigma TW2-2pi1piRe250-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-1-2-2 uTW2-2pi1piRe250-1-2-2.nc 
+Wed Oct 15 12:58:34 2025	8561	findsoln -np0 4 -np1 1 -eqb -xrel -T 10 -R 250 -sigma TW2-2pi1piRe250-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-1-2-2 uTW2-2pi1piRe250-1-2-2.nc 
+Wed Oct 15 12:58:58 2025	8799	findsoln -eqb -xrel -T 10 -R 250 -sigma TW2-2pi1piRe250-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-1-2-2 uTW2-2pi1piRe250-1-2-2.nc 
+Wed Oct 15 13:10:17 2025	10441	findsoln -eqb -xrel -T 10 -R 300 -sigma TW2-2pi1piRe300-1-2-2-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe300-1-2-2 uTW2-2pi1piRe300-1-2-2.nc 
+Wed Oct 15 13:26:55 2025	13472	findsoln -eqb -xrel -T 10 -R 250 -sigma TW2-2pi1piRe250-2-2-4-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe250-2-2-4 uTW2-2pi1piRe250-2-2-4.nc 
+Wed Oct 15 16:07:52 2025	16140	findsoln -eqb -xrel -T 10 -R 300 -sigma TW2-2pi1piRe300-2-2-4-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe300-2-2-4 uTW2-2pi1piRe300-2-2-4.nc 

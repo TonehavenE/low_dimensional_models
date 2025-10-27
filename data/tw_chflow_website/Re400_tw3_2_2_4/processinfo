@@ -1,0 +1,9 @@
+Command:  /home/ebenq/.local/bin/findsoln -eqb -xrel -sigma 2025-10-06_at_22-44_tw_sigma.asc -T 10 -R 400 uRe400-sz-tx-2-2-4-tw3.nc 
+PWD:      /home/ebenq/Dev/julia/INCO590/data/tw_chflow_website/Re400_tw3_2_2_4
+Host:     ebenq-ideapad, PID: 463645
+Time:     2025-10-06 10:46:42
+Version:  2.0.2
+Git rev:  91ba77f93bba73af4ef25e3d3cecf35521badbfd
+Compiler: GNU 14.2.1
+
+

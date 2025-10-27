@@ -1,0 +1,2 @@
+Tue Oct  7 21:24:47 2025	488978	/home/ebenq/.local/bin/findsoln -eqb -xrel -sigma 2025-10-07_at_21-18_hookstepped_tw_sigma.asc -T 10 -R 400 uRe400.nc 
+Tue Oct  7 21:25:02 2025	489165	/home/ebenq/.local/bin/findsoln -eqb -xrel -sigma 2025-10-07_at_21-18_hookstepped_tw_sigma.asc -T 10 -R 400 uRe400.nc 

@@ -1,0 +1,3 @@
+Wed Oct 15 10:48:37 2025	203638	/home/ebenq/.local/bin/changegrid --alpha 1 --gamma 2 -Nx 40 uBest.nc uTW1-2pi1piRe200-2-2-4.nc 
+Wed Oct 15 10:48:44 2025	203693	/home/ebenq/.local/bin/changegrid --alpha 1 --gamma 2 -Nx 40 uBest uTW1-2pi1piRe200-2-2-4 
+Wed Oct 15 10:48:51 2025	203796	/home/ebenq/.local/bin/changegrid --alpha 1 --gamma 2 -Nx 40 ubest uTW1-2pi1piRe200-2-2-4 

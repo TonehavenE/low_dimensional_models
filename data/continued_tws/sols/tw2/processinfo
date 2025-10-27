@@ -1,0 +1,9 @@
+Command:  findsoln -eqb -xrel -T 10 -R 300 -sigma TW2-2pi1piRe300-2-2-4-sol-sigma.asc -symms sztx.asc -od TW2-2pi1piRe300-2-2-4 uTW2-2pi1piRe300-2-2-4.nc 
+PWD:      /home/ebenq/Dev/julia/INCO590/data/continued_tws/sols/tw2
+Host:     ebenq-ideapad, PID: 16140
+Time:     2025-10-15 04:07:52
+Version:  2.0.2
+Git rev:  91ba77f93bba73af4ef25e3d3cecf35521badbfd
+Compiler: GNU 14.2.1
+
+
