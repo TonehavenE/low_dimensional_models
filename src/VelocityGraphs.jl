@@ -1,4 +1,5 @@
-using Revise, Polynomials, WGLMakie, LinearAlgebra, DelimitedFiles, Statistics
+using Revise, Polynomials, CairoMakie, LinearAlgebra, DelimitedFiles, Statistics # switched to CairoMakie after having many issues with CairoMakie
+# using Revise, Polynomials, CairoMakie, LinearAlgebra, DelimitedFiles, Statistics
 includet("./BasisFunctions.jl")
 includet("./BifurcationGenerator.jl")
 using .BasisFunctions
@@ -70,7 +71,7 @@ function velocity_fields(Ψ, solution; num_points=20, Lx=2π, Lz=π, save_path=n
     Colorbar(fig[3, 2], colormap=cmap, limits=(-1, 1), label="Streamwise velocity u")
 
     if save_path !== nothing
-        WGLMakie.save(save_path, fig)
+        CairoMakie.save(save_path, fig)
         println("Saved figure to: $save_path")
     end
     
@@ -117,26 +118,30 @@ function velocity_fields_dns(root; save_path=nothing)
     xs = range(0, 2π, length=nx)
     ys = range(-1, 1, length=ny)
     xy_points = [Point2f(x, y) for y in ys, x in xs] |> vec
-    uv_arrows = [(u_xy[j,i]*scale, v_xy[j,i]*scale) for j in 1:ny, i in 1:nx] |> vec
+    uv_arrows = [(u_xy[ny-j+1, i]*scale, v_xy[ny-j+1, i]*scale) for j in 1:ny, i in 1:nx] |> vec
+    # uv_arrows = [(u_xy[j,i]*scale, v_xy[j,i]*scale) for j in 1:ny, i in 1:nx] |> vec
     arrows!(ax2, xy_points, uv_arrows, linewidth=line_width, arrowsize=arrow_size)
 
     # YZ plane
     ax3 = Axis(fig[3, 1], title="DNS (v, w) in yz-plane at x = 0", xlabel="Z", ylabel="Y", aspect=DataAspect())
-    nz, ny = size(v_yz)
+    ny, nz = size(v_yz)
     zs = range(0, π, length=nz)
     ys = range(-1, 1, length=ny)
-    heatmap!(ax3, zs, ys, u_yz, colormap=cmap)
+    heatmap!(ax3, zs, ys, reverse(transpose(u_yz)), colormap=cmap)
     zy_points = [Point2f(z, y) for z in zs, y in ys] |> vec
-    wv_arrows = [(w_yz[j,i]*scale, v_yz[j,i]*scale) for j in 1:nz, i in 1:ny] |> vec
+    wv_arrows = [(w_yz[i,j]*scale, v_yz[i,j]*scale) for j in 1:nz, i in 1:ny] |> vec
+    # wv_arrows = [(w_yz[nz-j+1, i]*scale, v_yz[nz-j+1, i]*scale) for j in 1:nz, i in 1:ny] |> vec
     arrows!(ax3, zy_points, wv_arrows, linewidth=line_width, arrowsize=arrow_size, color=:black)
     Colorbar(fig[3, 2], colormap=cmap, limits=(-1, 1), label="Streamwise velocity u")
 
+    println("Dimensions are Nx * Ny * Nz = $nx * $ny * $nz")
+
     if save_path !== nothing
-        WGLMakie.save(save_path, fig)
+        CairoMakie.save(save_path, fig)
         println("Saved figure to: $save_path")
     end
     
-    display(fig)
+    # display(fig)
     return fig
 end
 
@@ -183,6 +188,7 @@ function velocity_fields_comparison(Ψ, solution, root; save_dir=nothing)
     
     uw_dns = [(u_xz[j,i]*scale, w_xz[j,i]*scale) for i in 1:nx, j in 1:nz] |> vec
     arrows!(ax12, xz_points, uw_dns, linewidth=line_width, arrowsize=arrow_size)
+    println("finished generating xz plane graph")
 
     # === XY PLANE ===
     fig_xy = Figure(size=(1920, 1080))
@@ -197,15 +203,18 @@ function velocity_fields_comparison(Ψ, solution, root; save_dir=nothing)
     uv_ode = [(u(x,y,0)*scale, v(x,y,0)*scale) for y in ys, x in xs] |> vec    
     arrows!(ax21, xy_points, uv_ode, linewidth=line_width, arrowsize=arrow_size)
 
-    uv_dns = [(u_xy[j,i]*scale, v_xy[j,i]*scale) for j in 1:ny, i in 1:nx] |> vec
+    # uv_dns = [(u_xy[j,i]*scale, v_xy[j,i]*scale) for j in 1:ny, i in 1:nx] |> vec
+    # uv_dns = [(u_xy[i,j]*scale, v_xy[i,j]*scale) for i in 1:ny, j in 1:nx] |> vec
+    uv_dns = [(u_xy[ny-j+1, i]*scale, v_xy[ny-j+1, i]*scale) for j in 1:ny, i in 1:nx] |> vec
     arrows!(ax22, xy_points, uv_dns, linewidth=line_width, arrowsize=arrow_size)
+    println("finished generating xy plane graph")
 
     # === YZ PLANE ===
     fig_yz = Figure(size=(1920, 1080))
     ax31 = Axis(fig_yz[1, 1], title="ODE (v, w) in yz-plane", xlabel="Z", ylabel="Y", aspect=DataAspect())
     ax32 = Axis(fig_yz[1, 2], title="DNS (v, w) in yz-plane", xlabel="Z", ylabel="Y", aspect=DataAspect())
 
-    nz, ny = size(v_yz)
+    ny, nz = size(v_yz)
     zs = range(0, π, length=nz)
     ys = range(-1, 1, length=ny)
 
@@ -216,25 +225,33 @@ function velocity_fields_comparison(Ψ, solution, root; save_dir=nothing)
     wv_ode = [(w(0,y,z)*scale, v(0,y,z)*scale) for z in zs, y in ys] |> vec
     arrows!(ax31, zy_points, wv_ode, linewidth=line_width, arrowsize=arrow_size, color=:black)
 
-    heatmap!(ax32, zs, ys, u_yz, colormap=cmap)
-    wv_dns = [(w_yz[j,i]*scale, v_yz[j,i]*scale) for j in 1:nz, i in 1:ny] |> vec
+    heatmap!(ax32, zs, ys, reverse(transpose(u_yz)), colormap=cmap)
+    # heatmap!(ax32, zs, ys, u_yz, colormap=cmap)
+    wv_dns = [(w_yz[ny-i + 1,j]*scale, v_yz[ny - i + 1,j]*scale) for j in 1:nz, i in 1:ny] |> vec
+    # wv_dns = [(w_yz[nz-j+1, i]*scale, v_yz[nz-j+1, i]*scale) for j in 1:nz, i in 1:ny] |> vec
+
     arrows!(ax32, zy_points, wv_dns, linewidth=line_width, arrowsize=arrow_size, color=:black)
     
     Colorbar(fig_yz[1, 3], colormap=cmap, limits=(-1, 1), label="Streamwise velocity u")
+    println("finished generating yz plane graph")
+
+    println("Dimensions are Nx * Ny * Nz = $nx * $ny * $nz")
 
     # Save if directory provided
     if save_dir !== nothing
         mkpath(save_dir)
         base_name = basename(root)
-        WGLMakie.save(joinpath(save_dir, "$(base_name)_xz_comparison.png"), fig_xz)
-        WGLMakie.save(joinpath(save_dir, "$(base_name)_xy_comparison.png"), fig_xy)
-        WGLMakie.save(joinpath(save_dir, "$(base_name)_yz_comparison.png"), fig_yz)
+        CairoMakie.save(joinpath(save_dir, "$(base_name)_xz_comparison.png"), fig_xz)
+        CairoMakie.save(joinpath(save_dir, "$(base_name)_xy_comparison.png"), fig_xy)
+        CairoMakie.save(joinpath(save_dir, "$(base_name)_yz_comparison.png"), fig_yz)
         println("Saved comparison figures to: $save_dir")
+    else
+        display(fig_xz)
+        display(fig_xy)
+        display(fig_yz)
     end
 
-    display(fig_xz)
-    display(fig_xy)
-    display(fig_yz)
+    
     
     return (fig_xz, fig_xy, fig_yz)
 end

@@ -1,6 +1,6 @@
 module TW_Newton
 
-export residual, jacobian_residual, save_sigma, newton_hookstep_bordered!, verify, newton_bordered!, TW_CONFIGS, run_parameter_search
+export residual, jacobian_residual, save_sigma, newton_hookstep_bordered!, verify, newton_bordered!, TW_CONFIGS, run_parameter_search, find_tw_sol
 
 using LinearAlgebra
 using SparseArrays
@@ -391,6 +391,36 @@ function run_parameter_search(mode::Symbol, JKL::NTuple{3, Int}; α=1, γ=2, bas
         println("\nRun complete.\n\n")
     end
     return output
+end
+
+function find_tw_sol(mode::Symbol, JKL::NTuple{3, Int}, Re::Number; α=1, γ=2, basepath="./data/continued_tws/starts")
+    config = TW_CONFIGS[mode]
+    
+    println("Running $(config.name) at Re=$Re, JKL=$JKL")
+    println("cx0=$(config.cx0), cz0=$(config.cz0), symmetry=$(config.symmetry_group)")
+    Ψ, ijkl = generate_psi_ijkl(JKL; α=α, γ=γ, symmetry=config.symmetry_group)
+    A_of_Re, Cx, Cz, N = tw_matrices(Ψ)
+    A = A_of_Re(Re)
+    Nmodes = length(Ψ)
+
+    # Load initial guess
+    x0 = myreaddlm("$basepath/x$(config.name)-2pi1piRe$(Re)-$(JKL[1])-$(JKL[2])-$(JKL[3]).asc")
+    cx0 = config.cx0
+    cz0 = config.cz0
+    z0 = [x0; cx0; cz0]
+
+    println("Starting Residual: ", norm(residual(x0, cx0, cz0, A, Cx, Cz, N)))
+
+    println("Solving with hookstep...")
+    hookstep_sol, hookstep_cx, hookstep_cz, hookstep_iterates = newton_hookstep_bordered!(x0, cx0, cz0; A=A, Cx=Cx, Cz=Cz, N=N, verbose=false)
+    println("Search complete.")
+
+    println("Norm of solution: ", norm(hookstep_sol))
+    println("Wave speed in x: ", hookstep_cx)
+    println("Wave speed in z: ", hookstep_cz)
+
+    println("\nRun complete.\n\n")
+    return (hookstep_sol, hookstep_cx, hookstep_cz, hookstep_iterates)
 end
 
 end
