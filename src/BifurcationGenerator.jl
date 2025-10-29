@@ -149,8 +149,14 @@ function eqb_matrices(Ψ)
 
     # Create functions for bifurcation continuation (dependent on R)
     Bf = Float64.(B)
-    Af(R) = Float64.(A1 + A2 + 1 / R * A3)
+    # Convert A matrices to Float64 *once*
+    A1f = Float64.(A1)
+    A2f = Float64.(A2)
+    A3f = Float64.(A3)
 
+    # Define Af without the Float64.() wrapper
+    Af(R) = A1f + A2f + (1 / R) * A3f
+    
     return Af, Bf, Nf
 end
 
